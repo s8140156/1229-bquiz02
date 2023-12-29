@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<?php
+include_once "./api/db.php";
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -16,10 +19,13 @@
 	<div id="alerr" style="background:rgba(51,51,51,0.8); color:#FFF; min-height:100px; width:300px; position:fixed; display:none; z-index:9999; overflow:auto;">
 		<pre id="ssaa"></pre>
 	</div>
-	<iframe name="back" style="display:none;"></iframe>
+	<!-- <iframe name="back" style="display:none;"></iframe> -->
+	<!-- 改用ajax -->
 	<div id="all">
 		<div id="title">
-			<?= date("m月d日 l"); ?> | 今日瀏覽: 1 | 累積瀏覽: 36
+			<?= date("m月d日 l"); ?> | 
+			今日瀏覽:<?=$Total->find(['date'=>date('Y-m-d')])['total'];?> |  <!--一開始以為要先用判斷 但是其實就是拿今天日期裡面的total欄位放上即可-->
+			累積瀏覽: <?=$Total->sum('total');?>
 			<!-- l 是顯示英文星期 -->
 			<a href="index.php" style="float: right;">回首頁</a> <!-- 這邊加入回首頁float定位右 -->
 		</div>
@@ -44,6 +50,15 @@
 						<a href="?do=login">會員登入</a>
 					</span>
 					<div class="">
+						<?php
+							$do=$_GET['do']??'main';
+							$file="./front/{$do}.php";
+							if(file_exists($file)){
+								include $file;
+							}else{
+								include "main";
+							}
+						?>
 					</div>
 				</div>
 			</div>
