@@ -47,7 +47,22 @@ include_once "./api/db.php";
 					<!-- 增加跑馬燈,並須調整寬度 不然會員登入會被擠下去 因為是block屬性關係 -->
 
 					<span style="width:18%; display:inline-block;">
+					<?php
+					if(!isset($_SESSION['user'])){
+
+						?>
 						<a href="?do=login">會員登入</a>
+						<?php
+					}else{
+
+						
+						?>
+						歡迎,<?=$_SESSION['user'];?>
+						<button>登出</button>
+						<?php
+					}
+
+						?>
 					</span>
 					<div class="">
 						<?php

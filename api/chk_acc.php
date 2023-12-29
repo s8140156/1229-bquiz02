@@ -1,7 +1,7 @@
 <?php
 include_once "db.php";
 
-$_POST['acc'];
+// $_POST['acc'];
 $res=$User->count(['acc'=>$_POST['acc']]);
 
 if($res>0){
