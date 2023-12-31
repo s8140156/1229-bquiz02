@@ -24,14 +24,15 @@ include_once "./api/db.php";
 	<div id="all">
 		<div id="title">
 			<?= date("m月d日 l"); ?> | 
-			今日瀏覽:<?=$Total->find(['date'=>date('Y-m-d')])['total'];?> |  <!--一開始以為要先用判斷 但是其實就是拿今天日期裡面的total欄位放上即可-->
-			累積瀏覽: <?=$Total->sum('total');?>
 			<!-- l 是顯示英文星期 -->
+			今日瀏覽:<?=$Total->find(['date'=>date('Y-m-d')])['total'];?> |  <!--一開始以為要先用判斷 但是其實就是拿今天日期裡面的total欄位放上即可-->
+			累積瀏覽: <?=$Total->sum('total');?>  <!-- 使用sum把total欄位加總 -->
 			<a href="index.php" style="float: right;">回首頁</a> <!-- 這邊加入回首頁float定位右 -->
 		</div>
 		<div id="title2" title="健康促進網-回首頁">
 			<!-- 替代文字寫在這邊title -->
 			<img src="./icon/02B01.jpg" alt="">
+			<!-- 這邊加入banner圖片 @titile2 -->
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
@@ -44,9 +45,11 @@ include_once "./api/db.php";
 			<div class="hal" id="main">
 				<div>
 					<marquee style="width:78%; display:inline-block;">請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>
-					<!-- 增加跑馬燈,並須調整寬度 不然會員登入會被擠下去 因為是block屬性關係 -->
+					<!-- 增加跑馬燈,並須調整寬度 不然會員登入會被擠下去 因為是block(box佔滿整行)屬性關係 -->
+					<!-- style比照以下span -->
+					<!-- 觀察版面 跑馬燈位置在會員登入的左邊 -->
 
-					<span style="width:18%; display:inline-block;">
+					<span style="width:20%; display:inline-block;">
 					<?php
 					if(!isset($_SESSION['user'])){
 
@@ -65,6 +68,7 @@ include_once "./api/db.php";
 						?>
 					</span>
 					<div class="">
+						<!-- 在這邊切換不同fron/do?頁面進來 -->
 						<?php
 							$do=$_GET['do']??'main';
 							$file="./front/{$do}.php";

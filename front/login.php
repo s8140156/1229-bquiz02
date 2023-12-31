@@ -12,13 +12,15 @@
 		</tr>
 		<tr>
 			<td><input type="button" value="登入" onclick="login()"><input type="reset" value="清除"></td>
-			<td><a href="?do=forget">忘記密碼</a> |  <a href="?do=reg">尚未註冊</a></td>
+			<td><a href="?do=forget">忘記密碼</a> | <a href="?do=reg">尚未註冊</a></td>
 		</tr>
 	</table>
 	
 </fieldset>
 <!-- fieldset下層是legend(把標題打上去) -->
-<!-- 有css格式可以使用 請參考 -->
+<!-- 有css格式可以使用 請參考cent clo ct -->
+<!-- 有沒有發現使用ajax看起來好像可以不用form表單 如果使用form表單送至後端 則需要一直來回判斷 在題二題型不方便 -->
+<!-- ajax可以一連串動作如下 -->
 
 <script>
 	function login(){

@@ -147,18 +147,20 @@ $Total=new DB('total');
 $User=new DB('user');
 
 
-if(!isset($_SESSION['visited'])){
-    if($Total->count(['date'=>date('Y-m-d')])>0){
+if(!isset($_SESSION['visited'])){ //先判斷如果沒有session的值（通常在開新網頁時不會有session值 所以先判斷"沒有"seesion）, 就準備更新資料
+    if($Total->count(['date'=>date('Y-m-d')])>0){  // but先判斷資料庫裡有沒有date(今(當)天的日期)的存在(使用count 看有沒有值);若使用find(要判斷是否是空陣列 因為是整筆資料)
+        // count 找欄位'date'裡面的資料是今天
         $total=$Total->find(['date'=>date('Y-m-d')]);
-        $total['total']++;
+        $total['total']++; //把total資料表裡面欄位'total'+1
         $Total->save($total);
 
 
     }else{
         $Total->save(['total'=>1,'date'=>date('Y-m-d')]);
+        //資料庫沒有找到今天的瀏覽紀錄 則你就是今天第一位 所以就寫入資料庫(陣列)total欄位1,及新增今日日期
     }
 
-    $_SESSION['visited']=1;
+    $_SESSION['visited']=1; //因為沒有session值 上面判斷完執行完資料庫後 增加session=1讓session記憶
     //在測試人數計次時 若改變日期後 要先關瀏覽器(完整關掉) 不然session會記錄著你在線的紀錄而不會更新人次
 
 

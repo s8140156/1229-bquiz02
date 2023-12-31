@@ -30,9 +30,11 @@
 	function reg() {
 		let user = {
 			acc: $("#acc").val(),
+			//acc的值來自於id=acc的輸入值（表單輸入）
 			pw: $("#pw").val(),
 			pw2: $("#pw2").val(),
 			email: $("#email").val()
+			//這邊是先把表單上的資訊收集成一個js物件陣列(json) 在打包去後端
 		}
 		if (user.acc != '' && user.pw != '' && user.pw2 != '' && user.email != '') {
 			if (user.pw == user.pw2) {
