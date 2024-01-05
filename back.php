@@ -31,7 +31,9 @@ include_once "./api/db.php";
 		</div>
 		<div id="title2" title="健康促進網-回首頁">
 			<!-- 替代文字寫在這邊title -->
-			<img src="./icon/02B01.jpg" alt="">
+			<a href="index.php">
+				<img src="./icon/02B01.jpg" alt="">
+			</a>
 			<!-- 這邊加入banner圖片 @titile2 -->
 		</div>
 		<div id="mm">
