@@ -9,6 +9,7 @@
 		border-radius: 5px 5px 0 0;
 		/*4邊還是都要寫*/
 		text-align: center;
+		background-color: #ccc;
 	}
 
 	.tags {
@@ -24,10 +25,13 @@
 		margin-top: -1px;
 		display: none;
 		padding: 15px;
+	
 	}
 
 	.active {
 		border-bottom: 1px solid white;
+		background-color: white;
+		cursor: pointer;
 	}
 </style>
 
