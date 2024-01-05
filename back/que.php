@@ -1,9 +1,9 @@
 <fieldset>
 	<legend>新增問卷</legend>
 	<form action="./api/add_que.php" method="post">
-		<div style="display:flex">
-			<div>問卷名稱</div>
-			<div><input type="text" name="subject"></div>
+		<div>
+			問卷名稱
+			<input type="text" name="subject">
 		</div>
 		<div>
 			<div id="opt">選項
