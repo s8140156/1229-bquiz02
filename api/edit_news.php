@@ -16,7 +16,7 @@ if(isset($_POST['id'])){
 	}
 }
 
-to("../back.php?do=news")
+to("../back.php?do=news");
 // to("../back.php?do=news&p=$_POST['p']")
 
 
