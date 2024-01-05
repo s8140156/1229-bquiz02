@@ -24,7 +24,7 @@
 </fieldset>
 <fieldset class="news-list"> <!--當畫面點選分類網誌時, 使用ajax去後台取對應的文章列表-->
 	<legend>文章列表</legend> 
-	<div class="list-items" style="display:none"></div> <!--點選文章列表-->
+	<div class="list-items" style="display:none"></div> <!--點選文章列表, 因為在畫面一載入時會先執行getList(1) 所以先讓列表隱藏讓toggle翻牌-->
 	<div class="article"></div> <!--會出現對應的文章-->
 </fieldset>
 
