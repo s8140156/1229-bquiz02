@@ -145,6 +145,8 @@ function to($url){
 
 $Total=new DB('total');
 $User=new DB('user');
+$News=new DB('news');
+$Que=new DB('que');
 
 
 if(!isset($_SESSION['visited'])){ //先判斷如果沒有session的值（通常在開新網頁時不會有session值 所以先判斷"沒有"seesion）, 就準備更新資料
