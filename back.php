@@ -52,6 +52,7 @@ include_once "./api/db.php";
 					<!-- 觀察版面 跑馬燈位置在會員登入的左邊 -->
 
 					<span style="width:16%; display:inline-block;">
+					<!-- 有調整寬度20%->16% 讓管理button可以與登出/管理對齊而不會管理button被擠下去 -->
 					<?php
 					if(!isset($_SESSION['user'])){
 
@@ -82,7 +83,7 @@ include_once "./api/db.php";
 							if(file_exists($file)){
 								include $file;
 							}else{
-								include "./front/main.php";;
+								include "./back/main.php";
 							}
 						?>
 					</div>
