@@ -23,7 +23,7 @@
 		border-radius: 0 5px 5px 5px;
 		min-height: 480px;
 		margin-top: -1px;
-		display: none;
+		display: none; /* 先是把所有文章區塊顯示隱藏 後在下面html第一篇文章display:block */
 		padding: 15px;
 	
 	}
@@ -35,11 +35,6 @@
 	}
 </style>
 
-
-
-
-
-
 <div class="tags">
 	<div id="sec01" class="tag active">健康新知</div> <!-- 第一個tag+active讓他先顯現 -->
 	<div id="sec02" class="tag">菸害防治</div>
@@ -47,7 +42,7 @@
 	<div id="sec04" class="tag">慢性病防治</div>
 </div>
 <article>
-	<section id="section01" style="display:block">
+	<section id="section01" style="display:block"> <!--先讓第一篇文章顯示 直接寫style display:block-->
 		<h2>健康新知</h2>
 		<pre>  <!-- 使用pre斷行美化 -->
 		缺乏運動已成為影響全球死亡率的第四大危險因子-國人無規律運動之比率高達72.2%
@@ -149,7 +144,11 @@
 		$('.tag').removeClass('active')
 		$(this).addClass('active')
 		let id = $(this).attr('id').replace('sec', 'section')
+		// 取得被點擊元素的 id，並將 'sec' 替換為 'section'
 		$('section').hide()
+		//語意標籤不需 . or #
 		$('#' + id).show();
 	})
+	//這段程式我覺得是先使用class 把標題利用remove/add class來切換分頁(但把第一個先設active讓畫面先有預設)
+	//再來使用id(標題與文章是有成對概念)綁(replace())文章, 在用hide/show來動作要顯示的標題＋文章
 </script>
