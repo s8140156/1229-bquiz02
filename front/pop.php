@@ -28,14 +28,14 @@
 			</div>
 			</td>
 				<td>
-					<span><?=$row['good'];?>個人說</span><img src="./icon/02B03.jpg" style="width:25px">
+					<span><?=$row['good'];?></span>個人說<img src="./icon/02B03.jpg" style="width:25px">
 					<!-- 注意圖片路徑, 是已是含在index裡面 要用index角度來抓位置 -->
 					<?php
 					if(isset($_SESSION['user'])){
 						if($Log->count(['news'=>$row['id'],'acc'=>$_SESSION['user']])>0){
-							echo "<a id='n{$row['id']}' href='Javascript:good({$row['id']})'>收回讚</a>";
+							echo "<a href='Javascript:good({$row['id']})'>收回讚</a>";
 						}else{
-							echo "<a id='n{$row['id']}' href='Javascript:good({$row['id']})'>讚</a>";
+							echo "<a href='Javascript:good({$row['id']})'>讚</a>";
 						}
 						//這邊不須再放session[id] 因為一方面安全考量 一方面是session只要不關掉瀏覽器 幾乎哪裡皆可取得
 					}
@@ -51,16 +51,16 @@
 		<?php
 		if (($now - 1) > 0) {
 			$prev = $now - 1;
-			echo "<a href='?do=news&p=$prev'> < </a>";
+			echo "<a href='?do=pop&p=$prev'> < </a>";
 		}
 
 		for ($i = 1; $i <= $pages; $i++) {
 			$fontsize = ($now == $i) ? "font-size:20px" : "font-size:16px";
-			echo "<a href='?do=news&p=$i' style='$fontsize'> $i </a>";
+			echo "<a href='?do=pop&p=$i' style='$fontsize'> $i </a>";
 		}
 		if (($now + 1) <= $pages) {
 			$next = $now + 1;
-			echo "<a href='?do=news&p=$next'> > </a>";
+			echo "<a href='?do=pop&p=$next'> > </a>";
 		}
 		?>
 	</div>
