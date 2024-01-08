@@ -13,20 +13,33 @@ include_once "./api/db.php";
 	<script src="./js/jquery-1.9.1.min.js"></script>
 	<script src="./js/js.js"></script>
 	<!-- 起首式 整理素材 調整路徑 -->
+	<style>
+		.pop {
+			background: rgba(51, 51, 51, 0.8);
+			color: #FFF;
+			min-height: 300px;
+			width: 300px;
+			position: absolute; /*讓modal視窗固定不要動*/
+			display: none;
+			z-index: 9999;
+			overflow: auto;
+			padding: 10px;
+		}
+	</style>
 </head>
 
 <body>
-	<div id="alerr" style="background:rgba(51,51,51,0.8); color:#FFF; min-height:100px; width:300px; position:fixed; display:none; z-index:9999; overflow:auto;">
+	<!-- <div id="alerr" style=>
 		<pre id="ssaa"></pre>
-	</div>
+	</div> -->
 	<!-- <iframe name="back" style="display:none;"></iframe> -->
 	<!-- 改用ajax -->
 	<div id="all">
 		<div id="title">
-			<?= date("m月d日 l"); ?> | 
+			<?= date("m月d日 l"); ?> |
 			<!-- l 是顯示英文星期 -->
-			今日瀏覽:<?=$Total->find(['date'=>date('Y-m-d')])['total'];?> |  <!--一開始以為要先用判斷 但是其實就是拿今天日期裡面的total欄位放上即可-->
-			累積瀏覽: <?=$Total->sum('total');?>  <!-- 使用sum把total欄位加總 -->
+			今日瀏覽:<?= $Total->find(['date' => date('Y-m-d')])['total']; ?> | <!--一開始以為要先用判斷 但是其實就是拿今天日期裡面的total欄位放上即可-->
+			累積瀏覽: <?= $Total->sum('total'); ?> <!-- 使用sum把total欄位加總 -->
 			<a href="index.php" style="float: right;">回首頁</a> <!-- 這邊加入回首頁float定位右 -->
 		</div>
 		<div id="title2" title="健康促進網-回首頁">
@@ -52,38 +65,38 @@ include_once "./api/db.php";
 					<!-- 觀察版面 跑馬燈位置在會員登入的左邊 -->
 
 					<span style="width:16%; display:inline-block;">
-					<?php
-					if(!isset($_SESSION['user'])){
+						<?php
+						if (!isset($_SESSION['user'])) {
 
 						?>
-						<a href="?do=login">會員登入</a>
+							<a href="?do=login">會員登入</a>
 						<?php
-					}else{
+						} else {
 
-						
+
 						?>
-						歡迎,<?=$_SESSION['user'];?>
-						<button onclick="location.href='./api/logout.php'">登出</button>
-						<?php
-							if($_SESSION['user']=='admin'){
-								?>
+							歡迎,<?= $_SESSION['user']; ?>
+							<button onclick="location.href='./api/logout.php'">登出</button>
+							<?php
+							if ($_SESSION['user'] == 'admin') {
+							?>
 								<button onclick="location.href='back.php'">管理</button>
-								<?php	
-								}
-					}
+						<?php
+							}
+						}
 
 						?>
 					</span>
 					<div class="">
 						<!-- 在這邊切換不同fron/do?頁面進來 -->
 						<?php
-							$do=$_GET['do']??'main';
-							$file="./front/{$do}.php";
-							if(file_exists($file)){
-								include $file;
-							}else{
-								include "./front/main.php";;
-							}
+						$do = $_GET['do'] ?? 'main';
+						$file = "./front/{$do}.php";
+						if (file_exists($file)) {
+							include $file;
+						} else {
+							include "./front/main.php";;
+						}
 						?>
 					</div>
 				</div>

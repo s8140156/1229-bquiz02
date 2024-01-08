@@ -19,10 +19,27 @@
 		?>
 			<tr>
 				<td>
-					</div><?= $row['title']; ?><div>
+					<div class="title" data-id="<?=$row['id'];?>"><?= $row['title']; ?></div>
 				</td>
-				<td><div></div><?= mb_substr($row['news'], 0, 25); ?>...</td>
-				<td></td>
+				<td style="position=relative"><div><?= mb_substr($row['news'], 0, 25); ?>...</div>
+				<div id="p<?=$row['id'];?>" class="pop">
+				<h3 style='color:skyblue'><?=$row['title'];?></h3>
+				<pre><?=$row['news'];?></pre>
+			</div>
+			</td>
+				<td>
+					<span id="g<?=$row['id'];?>"><?=$row['good'];?>個人說</span><img src="./icon/02B03.jpg" style="width:25px">
+					<!-- 注意圖片路徑, 是已是含在index裡面 要用index角度來抓位置 -->
+					<?php
+					if(isset($_SESSION['user'])){
+						if($Log->count(['news'=>$row['id'],'acc'=>$_SESSION['user']])>0){
+							echo "<a href=''>收回讚</a>";
+						}else{
+							echo "<a href=''>讚</a>";
+						}
+					}
+					?>
+				</td>
 			</tr>
 		<?php
 		}
@@ -50,12 +67,12 @@
 </fieldset>
 
 <script>
-	$(".title").on('click',(e)=>{
-		let id=$(e.target).data('id');
-		$(`#s+${id},#a+${id}`).toggle();
-		// 注意上引號要整個包起來 , 算進字串裡
-		// $("#s"+id+",#a"+id).toggle();
-
-	})
+$(".title").hover(
+    function(){
+        $(".pop").hide()
+        let id=$(this).data("id")
+        $("#p"+id).show();
+    }
+)
 
 </script>

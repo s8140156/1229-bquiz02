@@ -20,14 +20,27 @@
 			<tr>
 				<td>
 					<div class="title" data-id="<?= $row['id']; ?>" style="cursor:pointer">
+					<!--不直接使用id是因為通常id需要英+數字組合 使用data-*取id-->
+					<!--這邊加div包在td裡面-->
 						<?= $row['title']; ?></div>
 				</td>
 
 				<td>
 					<div id="s<?=$row['id'];?>"><?= mb_substr($row['news'], 0, 25); ?>...</div>
 					<div id="a<?=$row['id'];?>" style="display:none"><?=$row['news'];?></div>
+					<!--設定兩組文章內容 一個是短版, 一個是完整內容-->
 				</td>
-				<td></td>
+				<td>
+				<?php
+					if(isset($_SESSION['user'])){
+						if($Log->count(['news'=>$row['id'],'acc'=>$_SESSION['user']])>0){
+							echo "<a href=''>收回讚</a>";
+						}else{
+							echo "<a href=''>讚</a>";
+						}
+					}
+					?>
+				</td>
 			</tr>
 		<?php
 		}
