@@ -62,5 +62,4 @@ $(".title").on('click',(e)=>{
 
 })
 
-
 </script>

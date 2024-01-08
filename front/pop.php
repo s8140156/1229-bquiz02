@@ -21,7 +21,7 @@
 				<td>
 					</div><?= $row['title']; ?><div>
 				</td>
-				<td><div></div><?= mb_substr($row['news'], 0, 25); ?></td>
+				<td><div></div><?= mb_substr($row['news'], 0, 25); ?>...</td>
 				<td></td>
 			</tr>
 		<?php
