@@ -10,6 +10,8 @@
 		/*4邊還是都要寫*/
 		text-align: center;
 		background-color: #ccc;
+		cursor: pointer; /*滑鼠*/
+
 	}
 
 	.tags {
@@ -31,7 +33,7 @@
 	.active {
 		border-bottom: 1px solid white;
 		background-color: white;  /* 如果不設4個頁籤都是灰的 也不會因為點選而變色 */
-		cursor: pointer;
+		/* cursor: pointer; */
 	}
 </style>
 

@@ -47,7 +47,11 @@
 			// {type}=>{type(欄位):type(值)}的縮寫 送給後台的是$_GET['type'(欄位)]
 			$('.list-items').html(list)
 			// 透過ajax回傳的list 更新.list-items的文章列表
-			$(".article,.list-items").toggle()
+			// $(".article,.list-items").toggle()
+			$('.article').hide();
+			$('.list-items').show();
+
+
 		})
 	}
 
@@ -55,7 +59,9 @@
 	function getNews(id){
 		$.get("./api/get_news.php",{id},(news)=>{
 			$('.article').html(news)
-			$(".article,.list-items").toggle()
+			// $(".article,.list-items").toggle()
+			$('.article').show();
+			$('.list-items').hide();
 
 		})
 	}
