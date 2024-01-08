@@ -34,10 +34,11 @@
 				<?php
 					if(isset($_SESSION['user'])){
 						if($Log->count(['news'=>$row['id'],'acc'=>$_SESSION['user']])>0){
-							echo "<a href=''>收回讚</a>";
+							echo "<a href='Javascript:good({$row['id']})'>收回讚</a>";
 						}else{
-							echo "<a href=''>讚</a>";
+							echo "<a href='Javascript:good({$row['id']})'>讚</a>";
 						}
+						//這邊不須再放session[id] 因為一方面安全考量 一方面是session只要不關掉瀏覽器 幾乎哪裡皆可取得
 					}
 					?>
 				</td>
