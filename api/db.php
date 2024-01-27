@@ -33,13 +33,13 @@ class DB{
         $sql=$this->sql_all($sql,$array,$other);
         return $this->pdo->query($sql)->fetchColumn();
     }
-    function sum($col='', $where = '', $other = ''){
+    function sum($col, $where = '', $other = ''){
         return  $this->math('sum',$col,$where,$other);
     }
-    function max($col='', $where = '', $other = ''){
+    function max($col, $where = '', $other = ''){
         return  $this->math('max',$col,$where,$other);
     }  
-    function min($col='', $where = '', $other = ''){
+    function min($col, $where = '', $other = ''){
         return  $this->math('min',$col,$where,$other);
     }  
     
