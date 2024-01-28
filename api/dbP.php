@@ -12,7 +12,7 @@ class DB{
         $this->table=$table;
         $this->pdo=new PDO($this->dsn,'root','');
     }
-    
+
     function all($where='',$other=''){
         $sql="select * from `$this->table` ";
         $sql=$this->sql_all($sql,$where,$other);
@@ -29,16 +29,29 @@ class DB{
         $sql=$this->sql_all($sql,$array,$other);
         return $this->pdo->query($sql)->fetchColumn();
     }
-    function sum($col='',$where='',$other=''){
-        return $this->math('sum',$col,$where,$other);
+    function sum($col,$where='',$other=''){
+        return $this->math('sum',$col, $where,$other);
     }
-    function max($col='',$where='',$other=''){
+    function max($col,$where='',$other=''){
         return $this->math('max',$col,$where,$other);
     }
-
-    function min($col='',$where='',$other){
+    function min($col,$where='',$other=''){
         return $this->math('min',$col,$where,$other);
     }
+    function find($id){
+        $sql="select * from `$this->table` ";
+        if(is_array($id)){
+            $tmp=$this->a2s($id);
+            $sql .=" where " . join(" && ",$tmp);
+        }else if(is_numeric($id)){
+            $sql .=" where `id`='$id'";
+        }
+        $row=$this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+
+
 }
 
 function dd($array){
