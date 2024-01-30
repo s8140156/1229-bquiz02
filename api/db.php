@@ -62,18 +62,19 @@ class DB{
         if(isset($array['id'])){
             $sql = "update `$this->table` set ";
     
-            if (!empty($array)) {
+            if (!empty($array)) { //注意 都是用$array判斷
                 $tmp = $this->a2s($array);
             } 
         
-            $sql .= join(",", $tmp);
-            $sql .= " where `id`='{$array['id']}'";
+            $sql .= join(",", $tmp); //先做串col=value , col=val
+            $sql .= " where `id`='{$array['id']}'"; //注意$array先用{}
         }else{
             $sql = "insert into `$this->table` ";
-            $cols = "(`" . join("`,`", array_keys($array)) . "`)";
-            $vals = "('" . join("','", $array) . "')";
-        
+            $cols = "(`" . join("`,`", array_keys($array)) . "`)"; // array_keys()無視value 取key值(col)
+            $vals = "('" . join("','", $array) . "')"; // .join() 這個函數會取$array中key、value的value出來組合成字串, join無視key 取value(val)
+            // 這邊要小心 col使用``(因為是欄位)  val使用''
             $sql = $sql . $cols . " values " . $vals;
+            //透過這樣組合來完成sql insert語法 insert into $table(`col1`,`col2`...) values(`val1`,`val2`...)
         }
         // echo $sql;
         return $this->pdo->exec($sql);
