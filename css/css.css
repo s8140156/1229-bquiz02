@@ -58,7 +58,7 @@ a:hover {
 	color: #999;
 }
 
-#lef {
+#lef { /*這是index左邊導覽列 包在mm裡*/
 	width: 18.2%;
 	padding: 2px;
 	background: url(../icon/02B04.png) repeat-y;
@@ -74,14 +74,14 @@ a:hover {
 	padding-top: 3px;
 }
 
-#main {
+#main { /*這是index主內容區 包在mm裡*/
 	display: inline-block;
 	width: 78%;
 	/* height: 565px; */
 	height: 100%; /*修改成比例*/
 	padding: 4px;
 	border: solid 1px #000000;
-	overflow: auto;
+	overflow: auto; /*這會讓overflow的部分有卷軸 而不會文章跑出來*/
 	position: relative;
 	left: 1%;
 }
