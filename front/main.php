@@ -9,7 +9,7 @@
 		border-radius: 5px 5px 0 0;
 		/*4邊還是都要寫*/
 		text-align: center;
-		background-color: #ccc;
+		background-color: #ccc; /*先灰底*/
 		cursor: pointer; /*滑鼠*/
 
 	}
