@@ -36,10 +36,10 @@ include_once "./api/db.php";
 	<!-- 改用ajax -->
 	<div id="all">
 		<div id="title">
-			<?= date("m月d日 l"); ?> |
+			<?=date("m月d日 l");?> |
 			<!-- l 是顯示英文星期 -->
-			今日瀏覽:<?= $Total->find(['date' => date('Y-m-d')])['total']; ?> | <!--一開始以為要先用判斷 但是其實就是拿今天日期裡面的total欄位放上即可-->
-			累積瀏覽: <?= $Total->sum('total'); ?> <!-- 使用sum把total欄位加總 -->
+			今日瀏覽:<?=$Total->find(['date'=>date('Y-m-d')])['total'];?> | <!--一開始以為要先用判斷 但是其實就是拿今天日期裡面的total欄位放上即可-->
+			累積瀏覽: <?=$Total->sum('total');?> <!-- 使用sum把total欄位加總 -->
 			<a href="index.php" style="float: right;">回首頁</a> <!-- 這邊加入回首頁float定位右 -->
 		</div>
 		<div id="title2" title="健康促進網-回首頁">
