@@ -1,6 +1,6 @@
 <?php
 
-date_default_timezone_set("Asia/Tapei");
+date_default_timezone_set("Asia/Taipei");
 session_start();
 
 class DB{
@@ -18,7 +18,6 @@ class DB{
         $sql=$this->sql_all($sql,$where,$other);
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
-
     function count($where='',$other=''){
         $sql="select count(*) from `$this->table` ";
         $sql=$this->sql_all($sql,$where,$other);
@@ -27,18 +26,17 @@ class DB{
     private function math($math,$col,$array='',$other=''){
         $sql="select $math(`$col`) from `$this->table` ";
         $sql=$this->sql_all($sql,$array,$other);
-        $this->pdo->query($sql)->fetchColumn();
+        return $this->pdo->query($sql)->fetchColumn();
     }
-    function sum($col, $where='',$other=''){
+    function sum($col,$where='',$other=''){
         return $this->math('sum',$col,$where,$other);
     }
-    function max($col, $where='',$other=''){
+    function max($col,$where='',$other=''){
         return $this->math('max',$col,$where,$other);
     }
-    function min($col, $where='',$other=''){
+    function min($col,$where='',$other=''){
         return $this->math('min',$col,$where,$other);
     }
-
     function find($id){
         $sql="select * from `$this->table` ";
         if(is_array($id)){
@@ -50,17 +48,17 @@ class DB{
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
     function save($array){
-        if(isset($aray['id'])){
-            $sql=" update `$this->table` set ";
+        if(isset($array['id'])){
+            $sql=" update `$this->table` set";
             if(!empty($array)){
                 $tmp=$this->a2s($array);
             }
             $sql .=join(",",$tmp);
-            $sql .=" where `id`={$array['id']}";
+            $sql .=" where `id`='{$array['id']}'";
         }else{
             $sql="insert into `$this->table` ";
-            $cols="(`" .join("`,`",array_keys($array)). "`)";
-            $vals="('" .join("','",$array). "')";
+            $cols="(`" . join("`,`",array_keys($array)) . "`)";
+            $vals="('" . join("','",$array) . "')";
             $sql=$sql . $cols . " values " . $vals;
         }
         return $this->pdo->exec($sql);
@@ -71,7 +69,7 @@ class DB{
             $tmp=$this->a2s($id);
             $sql .=join(" && ",$tmp);
         }else if(is_numeric($id)){
-            $sql .=" `id`='$id'";
+            $sql .="`id`='$id'";
         }
         return $this->pdo->exec($sql);
     }
@@ -80,7 +78,7 @@ class DB{
     }
     private function a2s($array){
         foreach($array as $col=>$value){
-            $tmp[]=" `$col`='$value'";
+            $tmp[]="`$col`='$value'";
         }
         return $tmp;
     }
@@ -90,7 +88,7 @@ class DB{
                 if(!empty($array)){
                     $tmp=$this->a2s($array);
                     $sql .=" where ".join(" && ",$tmp);
-            }
+                }
             }else{
                 $sql .=" $array";
             }
@@ -99,7 +97,6 @@ class DB{
         }
     }
 }
-
 function dd($array){
     echo "<pre>";
     print_r($array);
@@ -109,6 +106,7 @@ function dd($array){
 function to($url){
     header("location:$url");
 }
+
 
 
 
